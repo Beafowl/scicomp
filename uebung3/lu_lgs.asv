@@ -1,22 +1,27 @@
 function [x] = lu_lgs(A, b)
 
-    % lieber immer backslash operator verwenden, dieser berücksichtigt
-    % alles und nimmt den günstigsten weg
-
     % wenn die Matrix symmetrisch positiv definit ist, kann auch
     % die Cholesky-Zerlegung angewendet werden
     
     % Bei der Cholesky-Zerlegung gilt: A=R'*R
     % => L = R' und U = R
 
-    try R = chol(A);
-        disp('Using Cholesky decomposition');
-        L = R';
-        U = R;
-    catch
+    try R = chol(A)
+        disp('Using Cholesky decomposition')
+
+    catch ME
         disp('Using standard LU decomposition');
-        [L, U] = decompose(A);
+
     end
+
+    % U = M*A
+    % U: Untere Dreiecksmatrix
+    % M: Dreiecksmatrix, die A zu einer Dreiecksmatrix macht
+    % -> Elemente für die Dreiecksform eliminieren
+
+    % A = L*U
+
+    [L, U] = decompose(A);
 
     % Vorwärtssubstitution
     % L*y = b
