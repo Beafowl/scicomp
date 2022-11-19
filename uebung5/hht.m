@@ -1,14 +1,4 @@
 function [x] = hht(A,b)
-   
-%     a = [2 1 2]';
-% 
-%     v = a + sign(a(1,1)) * norm(a)*[1 0 0]';
-% 
-%     H = eye(size(v,1)) - 2*((v*v')/(v'*v));
-% 
-%     new = a - 2*((v'*a)/(v'*v))*v;
-% 
-%     disp(new);
 
     % use householder transformation on NxM matrix
    

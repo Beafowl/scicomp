@@ -1,24 +1,16 @@
-function [] = mypolyval()
+function [y_val] = mypolyval(p, t)
 
     % load function
     % optionally we can use p and x as arguments of the function
-    load('Messdaten.mat', 't', 'v');
+    load('Messdaten.mat', 'v');
 
     plot(t,v);
 
     % implement polyval(p,x)
 
-    % cubic function
-    p = [8,10,1,-20];
-
     % calculate x^3 + x^2 ... for every value of t
-    pows = t.^([3 2 1 0]');
+    pows = t.^(fliplr(0:size(p,2)-1)');
 
     % vector multiplication to get the y values
     y_val = p * pows;
-
-    plot(t,y_val);
-    hold on
-    plot(t,v);
-    hold off
 end
